@@ -1,0 +1,10 @@
+{
+  "name": "omzw-admin",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": "20.x" },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.0",
+    "resend": "^3.2.0"
+  }
+}
