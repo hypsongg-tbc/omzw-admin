@@ -16,6 +16,7 @@ function auth(req, res) {
 }
 
 export default async function handler(req, res) {
+  try {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (!auth(req, res)) return;
 
@@ -91,4 +92,7 @@ export default async function handler(req, res) {
   }
 
   return res.status(405).json({ error: 'method not allowed' });
+  } catch (err) {
+    return res.status(500).json({ error: err.message, stack: err.stack, type: err.constructor.name });
+  }
 }
