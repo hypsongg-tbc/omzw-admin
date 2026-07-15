@@ -5,6 +5,7 @@
  */
 
 import { neon } from '@neondatabase/serverless';
+import { ensureTables } from './_db.js';
 
 function auth(req, res) {
   if (req.headers['x-admin-secret'] !== process.env.ADMIN_SECRET) {
@@ -19,6 +20,7 @@ export default async function handler(req, res) {
   if (!auth(req, res)) return;
 
   const sql = neon(process.env.DATABASE_URL);
+  await ensureTables(sql);
 
   // --- GET individual ---
   if (req.method === 'GET' && req.query.id) {
